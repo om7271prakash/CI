@@ -3,7 +3,12 @@
   <head>
     <meta charset="utf-8">
     <title>Articles List</title>
-     <?= link_tag('assets/css/admin.min.css'); ?>
+
+    <?= link_tag('assets/css/bootstrap/bootstrap.min.css'); ?>
+    <?= link_tag('assets/css/font-awesome/css/font-awesome.min.css'); ?>
+    <?= link_tag('assets/css/datatable/dataTables.bootstrap4.css'); ?>
+    <?= link_tag('assets/css/custom.css'); ?>
+
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
@@ -176,9 +181,14 @@
         </ul>
       </div>
     </nav>
+
     <script type="text/javascript" src="<?= base_url('assets/js/jquery.min.js'); ?>"></script>
-    <script type="text/javascript" src="<?= base_url('assets/js/admin.min.js'); ?>"></script>
-    <script type="text/javascript" src="<?= base_url('assets/js/admin.charts.min.js'); ?>"></script>
-    <script type="text/javascript" src="<?= base_url('assets/js/admin.datatable.min.js'); ?>"></script>
+    <script type="text/javascript" src="<?= base_url('assets/js/bootstrap/bootstrap.bundle.min.js'); ?>"></script>
+    <script type="text/javascript" src="<?= base_url('assets/js/jquery-easing/jquery.easing.min.js'); ?>"></script>
+    <script type="text/javascript" src="<?= base_url('assets/js/datatables/jquery.dataTables.js'); ?>"></script>
+    <script type="text/javascript" src="<?= base_url('assets/js/datatables/dataTables.bootstrap4.js'); ?>"></script>
+    <script type="text/javascript" src="<?= base_url('assets/js/custom.js'); ?>"></script>
+    <script type="text/javascript" src="<?= base_url('assets/js/custom-datatables.js'); ?>"></script>
+
   </body>
 </html>
