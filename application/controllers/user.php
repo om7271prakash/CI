@@ -1,9 +1,10 @@
 <?php
 
 class User extends MY_Controller{
-	
+
 	public function index(){
-		echo "user working";
+		
+		$this->load->view('public/articles_list');
 	}
 }
 ?>
