@@ -7,7 +7,10 @@ class Admin extends MY_Controller{
 	}
 	function dashboard()
 	{
-		$this->load->view('admin/dashboard');
+		$this->load->model('articlesmodel', 'articles');
+		$articles = $this->articles->articles_list();
+		
+		$this->load->view('admin/dashboard', ['articles' => $articles]);
 	}
 }
 ?>
