@@ -9,7 +9,7 @@ class LoginModel extends CI_Model
     $q = $this->db->where(['uname' => $username, 'pword' => $password])
                   ->get('users');
     if( $q->num_rows() ){
-      return true;
+      return $q->row()->id;
     }else{
       return false;
     }

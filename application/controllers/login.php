@@ -25,8 +25,14 @@ class Login extends MY_Controller
       $password = $this->input->post('password');
 
       $this->load->model('loginmodel');
-      if($this->loginmodel->login_valid($username, $password)){
-        echo 'Username/Password Matched';
+      $login_id = $this->loginmodel->login_valid($username, $password);
+      if($login_id){
+
+        $this->load->library('session');
+        $this->session->set_userdata('id', $login_id);
+
+        $this->load->view('admin/dashboard');
+
       }else {
         echo 'Username/Password Not Matched';
       }
@@ -36,6 +42,7 @@ class Login extends MY_Controller
       $this->load->view('public/admin_login');
     }
   }
+
 
 }
 
