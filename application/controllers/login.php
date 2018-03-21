@@ -31,7 +31,7 @@ class Login extends MY_Controller
         $this->load->library('session');
         $this->session->set_userdata('id', $login_id);
 
-        $this->load->view('admin/dashboard');
+        return redirect('admin/dashboard');
 
       }else {
         echo 'Username/Password Not Matched';
