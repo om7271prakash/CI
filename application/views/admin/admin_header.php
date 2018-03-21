@@ -21,9 +21,9 @@
           <li class="nav-item">
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="<?= base_url('/logout'); ?>">
-              <i class="fa fa-fw fa-sign-in"></i>Logout</a>
-          </li>
+          <a class="nav-link" data-toggle="modal" data-target="#exampleModal">
+            <i class="fa fa-fw fa-sign-out"></i>Logout</a>
+        </li>
         </ul>
       </div>
     </nav>
