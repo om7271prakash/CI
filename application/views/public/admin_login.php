@@ -18,7 +18,7 @@
           <?= form_open('login/admin_login') ?>
             <div class="form-group">
               <label for="exampleInputEmail1">Username</label>
-              <?= form_input(['type' => 'text', 'class' => 'form-control', 'id' => 'exampleInputUsername', 'aria-describedby' => 'usernameHelp', 'placeholder' => 'Enter Username', 'name' => 'username']) ?>
+              <?= form_input(['type' => 'text', 'class' => 'form-control', 'id' => 'exampleInputUsername', 'aria-describedby' => 'usernameHelp', 'placeholder' => 'Enter Username', 'name' => 'username', 'value' => set_value('username')]) ?>
               <?php
                 if(form_error('username')) {
                   echo form_error('username');

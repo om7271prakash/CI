@@ -21,7 +21,17 @@ class Login extends MY_Controller
     $this->form_validation->set_error_delimiters('<div class="text-danger" style = "margin-top:10px;">', '</div>');
 
     if ( $this->form_validation->run() ) {
-      echo 'success';
+      $username = $this->input->post('username');
+      $password = $this->input->post('password');
+
+      $this->load->model('loginmodel');
+      if($this->loginmodel->login_valid($username, $password)){
+        echo 'Username/Password Matched';
+      }else {
+        echo 'Username/Password Not Matched';
+      }
+
+
     }else{
       $this->load->view('public/admin_login');
     }
