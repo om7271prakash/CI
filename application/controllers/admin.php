@@ -74,7 +74,7 @@ class Admin extends MY_Controller{
 
 				$this->load->model('articlesmodel', 'articles');
 
-				if( $this->articles->update_article( $id, $post ) ){
+				if( $this->articles->update_article( $id, $post, $this->session->userdata('id') ) ){
 
 					$this->session->set_flashdata('feedback', 'Article Updated Successfully.');
 
@@ -97,9 +97,18 @@ class Admin extends MY_Controller{
 
 			$this->load->model('articlesmodel', 'articles');
 
-			$article = $this->articles->find_article( $id );
+			if($article = $this->articles->find_article( $id, $this->session->userdata('id') )){
 
-			$this->load->view('admin/edit_article', ['article' => $article]);
+				$this->load->view('admin/edit_article', ['article' => $article]);
+
+			}else{
+
+				$this->session->set_flashdata('feedback', 'Wrong Article, Please Try Again.');
+
+				$this->session->set_flashdata('feedback_class', 'alert-danger');
+
+				return redirect('admin/dashboard');
+			}
 		}
 	}
 

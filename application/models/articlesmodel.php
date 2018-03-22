@@ -22,18 +22,19 @@ class Articlesmodel extends CI_Model
     return $this->db->insert('articles', $array);
   }
 
-  function find_article( $article_id )
+  function find_article( $article_id, $user_id )
   {
     $query = $this->db->select('id, title, body')
-                      ->where('id', $article_id)
+                      ->where(['id' => $article_id, 'user_id' => $user_id])
                       ->get('articles');
 
     return $query->row();
   }
 
-  function update_article($article_id, $article){
+  function update_article($article_id, $article, $user_id)
+  {
     $query = $this->db->set($article)
-                      ->where('id', $article_id)
+                      ->where(['id' => $article_id, 'user_id' => $user_id])
                       ->update('articles');
 
     return $query;
