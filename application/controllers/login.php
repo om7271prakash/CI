@@ -42,6 +42,10 @@ class Login extends MY_Controller
     }
   }
 
+  function logout(){
+    $this->session->unset_userdata('id');
+    return redirect('login');
+  }
 
 }
 
