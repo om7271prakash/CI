@@ -30,10 +30,10 @@
               </tr>
             </tfoot>
             <tbody>
-              <?php if(count($articles)) { ?>
+              <?php $i = 0; if(count($articles)) { ?>
                 <?php foreach ($articles as $article) { ?>
                   <tr>
-                    <td><?= $article['id'] ?></td>
+                    <td><?= ++$i ?></td>
                     <td><?= $article['title'] ?></td>
                     <td>
                       <?= anchor("admin/edit_article/{$article['id']}", 'Edit', ['class' => 'btn btn-primary']) ?>
