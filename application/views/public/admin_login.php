@@ -12,6 +12,11 @@
   </head>
   <body>
     <div class="container">
+      <?php if ( $error = $this->session->flashdata('login_failed') ) {  ?>
+        <div class="mx-auto col-md-5 mt-3 alert alert-danger text-center">
+          <?= $error ?>
+        </div>
+      <?php } ?>
       <div class="card card-login mx-auto mt-5">
         <div class="card-header">Login</div>
         <div class="card-body">

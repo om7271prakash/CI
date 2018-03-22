@@ -9,6 +9,9 @@ class Login extends MY_Controller
 
   function index()
   {
+    if ( $this->session->userdata('id'))
+      return redirect('admin/dashboard');
+
     $this->load->helper('form');
     $this->load->view('public/admin_login');
   }
@@ -33,7 +36,8 @@ class Login extends MY_Controller
         return redirect('admin/dashboard');
 
       }else {
-        echo 'Username/Password Not Matched';
+        $this->session->set_flashdata('login_failed', 'Invalid Usernam/Password.');
+        return redirect('login');
       }
 
 
