@@ -476,3 +476,6 @@ footer.sticky-footer {
     width: calc(100% - 55px);
   }
 }
+.admin-dashboard-articles-table{
+  text-align: center;
+}
