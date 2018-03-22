@@ -1,11 +1,16 @@
 <?php include 'admin_header.php' ?>
 <div style = "margin-top:6%"></div>
 <div class="container-fluid">
-  <!-- Example DataTables Card-->
-
+  <?php if ( $feedback = $this->session->flashdata('feedback') ) {  ?>
+    <div class="mx-auto col-md-5 mt-3 alert <?= $this->session->flashdata('feedback_class'); ?> text-center">
+      <?= $feedback ?>
+    </div>
+  <?php } ?>
   <div class="card mb-3">
     <div class="card-header">
-      <i class="fa fa-table"></i> Admin Panel Articles</div>
+      <i class="fa fa-table"></i> Admin Panel Articles
+      <?= anchor('admin/add_article', 'Add Article', ['class' => 'btn btn-primary pull-right']) ?>
+    </div>
     <div class="card-body">
       <div class="table-responsive">
         <div class="col-md-10 offset-md-1">
@@ -40,25 +45,6 @@
             </tbody>
           </table>
         </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">×</span>
-        </button>
-      </div>
-      <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-      <div class="modal-footer">
-        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-        <?= anchor('login/logout', 'Logout', ['class' => 'btn btn-primary']) ?>
-
       </div>
     </div>
   </div>
