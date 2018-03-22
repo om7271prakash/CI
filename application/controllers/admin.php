@@ -2,14 +2,18 @@
 
 class Admin extends MY_Controller{
 
-	public function index(){
-		echo "admin working";
+	function __construct()
+	{
+		parent::__construct();
+		if ( ! $this->session->userdata('id') )
+			return redirect('login');
 	}
+
 	function dashboard()
 	{
 		$this->load->model('articlesmodel', 'articles');
 		$articles = $this->articles->articles_list();
-		
+
 		$this->load->view('admin/dashboard', ['articles' => $articles]);
 	}
 }
