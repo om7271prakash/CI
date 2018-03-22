@@ -40,6 +40,11 @@ class Articlesmodel extends CI_Model
     return $query;
   }
 
+  function delete_article($article_id, $user_id)
+  {
+    return $this->db->delete('articles', ['id' => $article_id, 'user_id' => $user_id]);
+  }
+
 
 }
 

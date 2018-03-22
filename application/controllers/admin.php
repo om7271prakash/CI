@@ -13,6 +13,8 @@ class Admin extends MY_Controller{
 
 	function dashboard()
 	{
+		$this->load->helper('form');
+
 		$this->load->model('articlesmodel', 'articles');
 
 		$articles = $this->articles->articles_list();
@@ -113,7 +115,28 @@ class Admin extends MY_Controller{
 	}
 
 	function delete_article($id){
-		echo $id;
+
+		if ( $article_id = $this->input->post('article_id') ) {
+
+			$this->load->model('articlesmodel', 'articles');
+
+			if( $this->articles->delete_article( $article_id, $this->session->userdata('id') ) ){
+
+				$this->session->set_flashdata('feedback', 'Article Deleted Successfully.');
+
+				$this->session->set_flashdata('feedback_class', 'alert-success');
+
+				}else {
+
+				$this->session->set_flashdata('feedback', 'Article Failed To Delete, Please Try Again.');
+
+				$this->session->set_flashdata('feedback_class', 'alert-danger');
+				}
+
+				return redirect('admin/dashboard');
+		}else{
+			return redirect('admin/dashboard');
+		}
 	}
 
 }
