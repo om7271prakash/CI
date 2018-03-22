@@ -36,8 +36,8 @@
                     <td><?= $article['id'] ?></td>
                     <td><?= $article['title'] ?></td>
                     <td>
-                      <a href="#" class="btn btn-primary">Edit</a>
-                      <a href="#" class="btn btn-danger">Delete</a>
+                      <?= anchor("admin/edit_article/{$article['id']}", 'Edit', ['class' => 'btn btn-primary']) ?>
+                      <?= anchor("admin/delete_article/{$article['id']}", 'Delete', ['class' => 'btn btn-danger']) ?>
                     </td>
                   </tr>
                 <?php } ?>

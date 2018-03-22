@@ -21,6 +21,25 @@ class Articlesmodel extends CI_Model
   {
     return $this->db->insert('articles', $array);
   }
+
+  function find_article( $article_id )
+  {
+    $query = $this->db->select('id, title, body')
+                      ->where('id', $article_id)
+                      ->get('articles');
+
+    return $query->row();
+  }
+
+  function update_article($article_id, $article){
+    $query = $this->db->set($article)
+                      ->where('id', $article_id)
+                      ->update('articles');
+
+    return $query;
+  }
+
+
 }
 
 
