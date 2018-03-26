@@ -4,8 +4,21 @@
  */
 class Articlesmodel extends CI_Model
 {
-  function articles_list()
+  function articles_list( $limit, $offset )
   {
+    $user_id = $this->session->get_userdata('user_id');
+
+    $query = $this->db
+                        ->select('id, title')
+                        ->from('articles')
+                        ->where('user_id', $user_id['id'])
+                        ->limit($limit, $offset)
+                        ->get();
+
+    return $query->result_array();
+  }
+
+  public function num_rows(){
     $user_id = $this->session->get_userdata('user_id');
 
     $query = $this->db
@@ -14,7 +27,7 @@ class Articlesmodel extends CI_Model
                         ->where('user_id', $user_id['id'])
                         ->get();
 
-    return $query->result_array();
+    return $query->num_rows();
   }
 
   function add_article($array)

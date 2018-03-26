@@ -18,7 +18,17 @@ class Admin extends MY_Controller{
 	function dashboard()
 	{
 
-		$articles = $this->articles->articles_list();
+		$this->load->library('pagination');
+
+		$config = [
+								"base_url" => base_url('admin/dashboard'),
+								"per_page" => 5,
+								"total_rows" => $this->articles->num_rows()
+		];
+
+		$this->pagination->initialize($config);
+
+		$articles = $this->articles->articles_list( $config['per_page'], $this->uri->segment(3) );
 
 		$this->load->view('admin/dashboard', ['articles' => $articles]);
 	}

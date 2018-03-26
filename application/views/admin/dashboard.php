@@ -14,21 +14,14 @@
     <div class="card-body">
       <div class="table-responsive">
         <div class="col-md-10 offset-md-1">
-          <table class="table table-bordered admin-dashboard-articles-table" id="dataTable" width="100%" cellspacing="0">
+          <table class="table table-bordered admin-dashboard-articles-table" id="" width="100%" cellspacing="0">
             <thead>
               <tr>
-                <th>ID</th>
-                <th>TITLE</th>
-                <th>ACTION</th>
+                <th style="width:10%">ID</th>
+                <th style="width:70%">TITLE</th>
+                <th style="width:20%">ACTION</th>
               </tr>
             </thead>
-            <tfoot>
-              <tr>
-                <th>ID</th>
-                <th>TITLE</th>
-                <th>ACTION</th>
-              </tr>
-            </tfoot>
             <tbody>
               <?php $i = 0; if(count($articles)) { ?>
                 <?php foreach ($articles as $article) { ?>
@@ -55,6 +48,7 @@
               <?php } ?>
             </tbody>
           </table>
+          <?= $this->pagination->create_links(); ?>
         </div>
       </div>
     </div>
