@@ -4,6 +4,8 @@ class User extends MY_Controller{
 
 	public function index(){
 
+		$this->load->helper('form');
+
 		$this->load->model('articlesmodel', 'articles');
 
 		$this->load->library('pagination');
@@ -35,6 +37,29 @@ class User extends MY_Controller{
 		$articles = $this->articles->all_articles_list( $config['per_page'], $this->uri->segment(3, 0) );
 
 		$this->load->view('public/articles_list', compact( 'articles' ) );
+	}
+
+	public function search(){
+
+		$this->load->library('form_validation');
+
+		$this->form_validation->set_rules('query', 'Query', 'required');
+
+		if ( !$this->form_validation->run() ) {
+
+			$this->index();
+
+		}else{
+
+			$query = $this->input->post('query');
+
+			$this->load->model('articlesmodel', 'articles');
+
+			$articles = $this->articles->search( $query );
+
+			$this->load->view('public/search_results', compact( 'articles' ) );
+
+		}
 	}
 }
 ?>

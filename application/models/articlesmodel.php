@@ -80,6 +80,14 @@ class Articlesmodel extends CI_Model
     return $this->db->delete('articles', ['id' => $article_id, 'user_id' => $user_id]);
   }
 
+  public function search( $q ){
+
+    $query = $this->db->from( 'articles' )
+             ->like( 'title', $q )
+             ->get();
+
+    return $query->result_array();
+  }
 
 }
 
