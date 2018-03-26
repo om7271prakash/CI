@@ -9,13 +9,14 @@ class Admin extends MY_Controller{
 		if ( ! $this->session->userdata('id') )
 
 			return redirect('login');
+
+		$this->load->model('articlesmodel', 'articles');
+		$this->load->helper('form');
+		$this->load->library('form_validation');
 	}
 
 	function dashboard()
 	{
-		$this->load->helper('form');
-
-		$this->load->model('articlesmodel', 'articles');
 
 		$articles = $this->articles->articles_list();
 
@@ -26,36 +27,26 @@ class Admin extends MY_Controller{
 
 		if ( $this->input->post() ) {
 
-			$this->load->library('form_validation');
-
 			$this->form_validation->set_error_delimiters('<div class="text-danger" style = "margin-top:10px;">', '</div>');
 
 			if( $this->form_validation->run('add_article_rules') ){
 
 				$post = $this->input->post();
 
-				$this->load->model('articlesmodel', 'articles');
+				return $this->_flashAndRedirect(
 
-				if( $this->articles->add_article( $post ) ){
+					$this->articles->add_article( $post ),
 
-					$this->session->set_flashdata('feedback', 'Article Added Successfully.');
+					'Article Added Successfully.',
 
-					$this->session->set_flashdata('feedback_class', 'alert-success');
-				}else {
-					$this->session->set_flashdata('feedback', 'Article Failed To Add, Please Try Again.');
-
-					$this->session->set_flashdata('feedback_class', 'alert-danger');
-				}
-
-				return redirect('admin/dashboard');
+					'Article Failed To Add, Please Try Again.'
+				);
 
 			}else {
 				return $this->load->view('admin/add_article');
 			}
 
 		}else {
-
-			$this->load->helper('form');
 
 			$this->load->view('admin/add_article');
 		}
@@ -66,38 +57,25 @@ class Admin extends MY_Controller{
 
 		if ( $this->input->post() ) {
 
-			$this->load->library('form_validation');
-
 			$this->form_validation->set_error_delimiters('<div class="text-danger" style = "margin-top:10px;">', '</div>');
 
 			if( $this->form_validation->run('add_article_rules') ){
 
 				$post = $this->input->post();
 
-				$this->load->model('articlesmodel', 'articles');
+				return $this->_flashAndRedirect(
 
-				if( $this->articles->update_article( $id, $post, $this->session->userdata('id') ) ){
+					$this->articles->update_article( $id, $post, $this->session->userdata('id')),
 
-					$this->session->set_flashdata('feedback', 'Article Updated Successfully.');
+					'Article Updated Successfully.',
 
-					$this->session->set_flashdata('feedback_class', 'alert-success');
-
-				}else {
-					$this->session->set_flashdata('feedback', 'Article Failed To Update, Please Try Again.');
-
-					$this->session->set_flashdata('feedback_class', 'alert-danger');
-				}
-
-				return redirect('admin/dashboard');
+					'Article Failed To Update, Please Try Again.'
+				);
 
 			}else {
 				return $this->load->view('admin/add_article');
 			}
 		}else {
-
-			$this->load->helper('form');
-
-			$this->load->model('articlesmodel', 'articles');
 
 			if($article = $this->articles->find_article( $id, $this->session->userdata('id') )){
 
@@ -114,29 +92,39 @@ class Admin extends MY_Controller{
 		}
 	}
 
-	function delete_article($id){
+	function delete_article(){
 
 		if ( $article_id = $this->input->post('article_id') ) {
 
-			$this->load->model('articlesmodel', 'articles');
+			return $this->_flashAndRedirect(
 
-			if( $this->articles->delete_article( $article_id, $this->session->userdata('id') ) ){
+				$this->articles->delete_article( $article_id, $this->session->userdata('id')),
 
-				$this->session->set_flashdata('feedback', 'Article Deleted Successfully.');
+				'Article Deleted Successfully.',
 
-				$this->session->set_flashdata('feedback_class', 'alert-success');
+				'Article Failed To Delete, Please Try Again.'
+			);
 
-				}else {
-
-				$this->session->set_flashdata('feedback', 'Article Failed To Delete, Please Try Again.');
-
-				$this->session->set_flashdata('feedback_class', 'alert-danger');
-				}
-
-				return redirect('admin/dashboard');
 		}else{
 			return redirect('admin/dashboard');
 		}
+	}
+
+	private function _flashAndRedirect($successful, $successMessage, $failureMessage){
+
+		if($successful){
+
+			$this->session->set_flashdata('feedback', $successMessage);
+
+			$this->session->set_flashdata('feedback_class', 'alert-success');
+		} else {
+
+			$this->session->set_flashdata('feedback', $failureMessage);
+
+			$this->session->set_flashdata('feedback_class', 'alert-danger');
+		}
+
+		return redirect('admin/dashboard');
 	}
 
 }
