@@ -18,6 +18,28 @@ class Articlesmodel extends CI_Model
     return $query->result_array();
   }
 
+  function all_articles_list( $limit, $offset )
+  {
+    $query = $this->db
+                        ->select('id, title')
+                        ->from('articles')
+                        ->limit($limit, $offset)
+                        ->get();
+
+    return $query->result_array();
+  }
+
+
+  public function count_all_articles(){
+
+    $query = $this->db
+                        ->select()
+                        ->from('articles')
+                        ->get();
+
+    return $query->num_rows();
+  }
+
   public function num_rows(){
     $user_id = $this->session->get_userdata('user_id');
 

@@ -23,10 +23,11 @@
               </tr>
             </thead>
             <tbody>
-              <?php $i = 0; if(count($articles)) { ?>
-                <?php foreach ($articles as $article) { ?>
+              <?php $i = 0; if(count($articles)) {
+                 $count = $this->uri->segment(3, 0);
+                 foreach ($articles as $article) { ?>
                   <tr>
-                    <td><?= ++$i ?></td>
+                    <td><?= ++$count; ?></td>
                     <td><?= $article['title'] ?></td>
                     <td>
                       <div class="row">
@@ -45,6 +46,8 @@
                     </td>
                   </tr>
                 <?php } ?>
+              <?php }else { ?>
+                <td colspan="3">No Record Found</td>
               <?php } ?>
             </tbody>
           </table>

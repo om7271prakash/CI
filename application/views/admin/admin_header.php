@@ -21,8 +21,7 @@
           <li class="nav-item">
           </li>
           <li class="nav-item">
-          <a class="nav-link" data-toggle="modal" data-target="#exampleModal">
-            <i class="fa fa-fw fa-sign-out"></i>Logout</a>
+          <?= anchor('', '<i class="fa fa-fw fa-sign-out"></i>Logout</a>', ['class' => 'nav-link', 'data-toggle' => 'modal', 'data-target' => '#exampleModal']); ?>
         </li>
         </ul>
       </div>

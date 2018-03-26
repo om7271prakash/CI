@@ -12,7 +12,7 @@
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
-      <a class="navbar-brand" href="<?= base_url('/'); ?>">Articles</a>
+      <?= anchor('/', 'Articles', ['class'=> 'navbar-brand']); ?>
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -31,8 +31,12 @@
             </form>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="<?= base_url('/login'); ?>">
-              <i class="fa fa-fw fa-sign-in"></i>Login</a>
+            <?php if(!$this->session->userdata('id')){ ?>
+              <?= anchor('/login', '<i class="fa fa-fw fa-sign-in"></i>Login', ['class' => 'nav-link']); ?>
+            <?php }else { ?>
+              <?= anchor('', '<i class="fa fa-fw fa-sign-out"></i>Logout</a>', ['class' => 'nav-link', 'data-toggle' => 'modal', 'data-target' => '#exampleModal']); ?>
+            <?php  } ?>
+
           </li>
         </ul>
       </div>

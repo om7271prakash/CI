@@ -11,14 +11,10 @@
       <div class="modal-footer">
         <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
         <?= anchor('login/logout', 'Logout', ['class' => 'btn btn-primary']) ?>
-
       </div>
     </div>
   </div>
 </div>
-
-
-
 
 <script type="text/javascript" src="<?= base_url('assets/js/jquery.min.js'); ?>"></script>
 <script type="text/javascript" src="<?= base_url('assets/js/bootstrap/bootstrap.bundle.min.js'); ?>"></script>

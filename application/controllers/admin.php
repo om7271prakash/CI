@@ -44,7 +44,7 @@ class Admin extends MY_Controller{
 
 		$this->pagination->initialize($config);
 
-		$articles = $this->articles->articles_list( $config['per_page'], $this->uri->segment(3) );
+		$articles = $this->articles->articles_list( $config['per_page'], $this->uri->segment(3, 0) );
 
 		$this->load->view('admin/dashboard', ['articles' => $articles]);
 	}

@@ -56,7 +56,7 @@ class Login extends MY_Controller
 
     $this->session->unset_userdata('id');
 
-    return redirect('login');
+    return redirect('/');
   }
 
 }
