@@ -19,7 +19,7 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <?= form_error('query', "<p class = 'navbar-text text-danger'>", "</p>"); ?>
+            <?= form_error('query', "<span class = 'navbar-text text-danger'>", "</span>"); ?>
           </li>
           <li class="nav-item">
             <?= form_open('user/search', ['class' => 'form-inline my-2 my-lg-0 mr-lg-2']); ?>

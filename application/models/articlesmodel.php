@@ -52,6 +52,14 @@ class Articlesmodel extends CI_Model
     return $query->num_rows();
   }
 
+  public function count_search_results( $q ){
+
+    $query = $this->db->from('articles')
+                      ->like('title', $q)
+                      ->get();
+    return $query->num_rows();
+  }
+
   function add_article($array)
   {
     return $this->db->insert('articles', $array);
@@ -80,10 +88,11 @@ class Articlesmodel extends CI_Model
     return $this->db->delete('articles', ['id' => $article_id, 'user_id' => $user_id]);
   }
 
-  public function search( $q ){
+  public function search( $q, $limit, $offset ){
 
     $query = $this->db->from( 'articles' )
              ->like( 'title', $q )
+             ->limit($limit, $offset)
              ->get();
 
     return $query->result_array();
