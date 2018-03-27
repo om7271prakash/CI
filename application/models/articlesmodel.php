@@ -21,7 +21,7 @@ class Articlesmodel extends CI_Model
   function all_articles_list( $limit, $offset )
   {
     $query = $this->db
-                        ->select('id, title')
+                        ->select()
                         ->from('articles')
                         ->limit($limit, $offset)
                         ->get();

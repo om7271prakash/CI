@@ -6,6 +6,7 @@
       <div class="card-body">
         <?= form_open('admin/add_article', []); ?>
         <?= form_hidden('user_id', $this->session->userdata('id')); ?>
+        <?= form_hidden('created_at', date('Y-m-d H:i:s')); ?>
           <div class="form-group">
             <div class="form-row">
               <div class="col-md-3">

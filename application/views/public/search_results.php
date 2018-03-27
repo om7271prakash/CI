@@ -28,7 +28,7 @@
                   <tr>
                     <td><?= ++$count; ?></td>
                     <td><?= $article['title'] ?></td>
-                    <td>Date</td>
+                    <td><?= $article['created_at'] ?></td>
                   </tr>
                 <?php } ?>
               <?php }else { ?>
