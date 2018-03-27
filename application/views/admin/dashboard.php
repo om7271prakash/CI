@@ -9,7 +9,10 @@
   <div class="card mb-3">
     <div class="card-header">
       <i class="fa fa-table"></i> Admin Panel Articles
-      <?= anchor('admin/add_article', 'Add Article', ['class' => 'btn btn-primary pull-right']) ?>
+      <div class="pull-right">
+        <?= anchor('/', 'All Articles', ['class' => 'btn btn-primary']) ?>
+        <?= anchor('admin/add_article', 'Add Article', ['class' => 'btn btn-primary']) ?>
+      </div>
     </div>
     <div class="card-body">
       <div class="table-responsive">
@@ -28,7 +31,7 @@
                  foreach ($articles as $article) { ?>
                   <tr>
                     <td><?= ++$count; ?></td>
-                    <td><?= $article['title'] ?></td>
+                    <td><?= anchor("user/article/{$article['id']}", $article['title']); ?></td>
                     <td>
                       <div class="row">
                         <div class="col-md-6">

@@ -103,5 +103,17 @@ class User extends MY_Controller{
 		$this->load->view('public/search_results', compact( 'articles' ) );
 	}
 
+	public function article( $id ){
+
+		$this->load->helper('form');
+
+		$this->load->model('articlesmodel', 'articles');
+
+		$article = $this->articles->find( $id );
+
+		$this->load->view( 'public/article_detail', compact('article') );
+
+	}
+
 }
 ?>

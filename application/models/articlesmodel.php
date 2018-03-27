@@ -13,6 +13,7 @@ class Articlesmodel extends CI_Model
                         ->from('articles')
                         ->where('user_id', $user_id['id'])
                         ->limit($limit, $offset)
+                        ->order_by('created_at', 'DESC')
                         ->get();
 
     return $query->result_array();
@@ -24,6 +25,7 @@ class Articlesmodel extends CI_Model
                         ->select()
                         ->from('articles')
                         ->limit($limit, $offset)
+                        ->order_by('created_at', 'DESC')
                         ->get();
 
     return $query->result_array();
@@ -93,9 +95,23 @@ class Articlesmodel extends CI_Model
     $query = $this->db->from( 'articles' )
              ->like( 'title', $q )
              ->limit($limit, $offset)
+             ->order_by('created_at', 'DESC')
              ->get();
 
     return $query->result_array();
+  }
+
+  public function find( $id ){
+
+    $query = $this->db->from('articles')
+                      ->where(['id' => $id ])
+                      ->get();
+    if ( $query->num_rows() ) {
+      return $query->row();
+    }else {
+      return false;
+    }
+
   }
 
 }

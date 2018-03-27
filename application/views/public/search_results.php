@@ -28,7 +28,7 @@
                   <tr>
                     <td><?= ++$count; ?></td>
                     <td><?= $article['title'] ?></td>
-                    <td><?= $article['created_at'] ?></td>
+                    <td><?= date('d M y H:i:s', strtotime($article['created_at'])) ?></td>
                   </tr>
                 <?php } ?>
               <?php }else { ?>

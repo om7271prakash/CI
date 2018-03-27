@@ -9,6 +9,11 @@
   <div class="card mb-3">
     <div class="card-header">
       <i class="fa fa-table"></i> All Articles
+      <div class="pull-right">
+        <?php if($this->session->userdata('id')){ ?>
+          <?= anchor('admin/dashboard', 'My Articles', ['class' => 'btn btn-primary']) ?>
+        <?php } ?>
+      </div>
     </div>
     <div class="card-body">
       <div class="table-responsive">
@@ -27,8 +32,8 @@
                  foreach ($articles as $article) { ?>
                   <tr>
                     <td><?= ++$count; ?></td>
-                    <td><?= $article['title'] ?></td>
-                    <td><?= $article['created_at'] ?></td>
+                    <td><?= anchor("user/article/{$article['id']}", $article['title']); ?></td>
+                    <td><?= date('d M y H:i:s', strtotime($article['created_at'])) ?></td>
                   </tr>
                 <?php } ?>
               <?php }else { ?>
