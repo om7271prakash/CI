@@ -24,6 +24,33 @@ $config = [
                                               "label" => "Password",
                                               "rules" => "required",
                                             ]
+                                  ],
+            "admin_register"       => [
+                                            [
+                                              "field" => "uname",
+                                              "label" => "User Name",
+                                              "rules" => "trim|required|min_length[5]",
+                                            ],
+                                            [
+                                              "field" => "pword",
+                                              "label" => "Password",
+                                              "rules" => "required",
+                                            ],
+                                            [
+                                              "field" => "pword1",
+                                              "label" => "Confirm Password",
+                                              "rules" => "required|matches[pword]",
+                                            ],
+                                            [
+                                              "field" => "fname",
+                                              "label" => "First Name",
+                                              "rules" => "trim|required|alpha",
+                                            ],
+                                            [
+                                              "field" => "lname",
+                                              "label" => "Last Name",
+                                              "rules" => "trim|alpha",
+                                            ],
                                   ]
 ];
 

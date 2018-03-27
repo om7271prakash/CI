@@ -17,6 +17,11 @@
           <?= $error ?>
         </div>
       <?php } ?>
+      <?php if ( $success = $this->session->flashdata('registration_success') ) {  ?>
+        <div class="mx-auto col-md-5 mt-3 alert alert-success text-center">
+          <?= $success ?>
+        </div>
+      <?php } ?>
       <div class="card card-login mx-auto mt-5">
         <div class="card-header">Login</div>
         <div class="card-body">
@@ -50,7 +55,7 @@
             <?= form_submit(['class' => 'btn btn-primary btn-block', 'type' => 'submit', 'value' => 'Login']) ?>
           <?= form_close(); ?>
           <div class="text-center">
-            <a class="d-block small mt-3" href="register.html">Register an Account</a>
+            <?= anchor('login/register_form', 'Register an Account', ['class' => 'd-block small mt-3']); ?>
             <a class="d-block small" href="forgot-password.html">Forgot Password?</a>
           </div>
         </div>
