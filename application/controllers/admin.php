@@ -53,11 +53,22 @@ class Admin extends MY_Controller{
 
 		if ( $this->input->post() ) {
 
+			$config['upload_path'] = 'uploads/';
+			$config['allowed_types'] = 'png|gif|jpg|jpeg';
+
+			$this->load->library('upload', $config);
+
 			$this->form_validation->set_error_delimiters('<div class="text-danger" style = "margin-top:10px;">', '</div>');
 
-			if( $this->form_validation->run('add_article_rules') ){
+			if( $this->form_validation->run('add_article_rules') && $this->upload->do_upload() ){
 
 				$post = $this->input->post();
+
+				$image = $this->upload->data();
+
+				$image_path = base_url("uploads/".$image['raw_name'].$image['file_ext']);
+
+				$post['image_path'] = $image_path;
 
 				return $this->_flashAndRedirect(
 
@@ -69,7 +80,8 @@ class Admin extends MY_Controller{
 				);
 
 			}else {
-				return $this->load->view('admin/add_article');
+				$upload_error = $this->upload->display_errors();
+				return $this->load->view('admin/add_article', compact('upload_error'));
 			}
 
 		}else {

@@ -4,7 +4,7 @@
     <div class="card card-register mx-auto mt-5">
       <div class="card-header">Add Article</div>
       <div class="card-body">
-        <?= form_open('admin/add_article', []); ?>
+        <?= form_open_multipart('admin/add_article', []); ?>
         <?= form_hidden('user_id', $this->session->userdata('id')); ?>
         <?= form_hidden('created_at', date('Y-m-d H:i:s')); ?>
           <div class="form-group">
@@ -34,6 +34,23 @@
                     echo form_error('body');
                   }
                 ?>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="form-row">
+              <div class="col-md-3">
+                <label for="articleBody">Select Image :</label>
+              </div>
+              <div class="col-md-9">
+                <?= form_upload(['name' => 'userfile', 'class' => 'form-control']); ?>
+                <span class="text-danger">
+                <?php
+                  if( isset($upload_error) ) {
+                    echo $upload_error;
+                  }
+                ?>
+                </span>
               </div>
             </div>
           </div>

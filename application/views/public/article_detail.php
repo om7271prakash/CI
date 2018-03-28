@@ -11,7 +11,16 @@
         <?= date('d M y H:i:s', strtotime($article->created_at)); ?>
       </div>
     </div>
-    <div class="card-body"><?= $article->body; ?></div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-8">
+          <?= $article->body; ?>
+        </div>
+        <div class="col-md-4">
+          <img src="<?= $article->image_path; ?>" alt="Image comming soon..." height="150px" width="auto">
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
