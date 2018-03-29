@@ -3,8 +3,10 @@ Blog Application in CI ( For Beginners )
 
 # Getting Started
 
-* **Step 1.** Pull or clone Project Repository "[here link] (https://github.com/om7271prakash/CI)"
+* **Step 1.** Pull or clone Project Repository "[here link] (https://github.com/om7271prakash/CI)".
+
 **Note:** The above Database Schema has create for Database Named "ci".
+
 * **Step 2.** Fill your Base URL in ./application/config/config.php
 ```
 $config['base_url'] = '<ENTER YOU BASE URL HERE>';
