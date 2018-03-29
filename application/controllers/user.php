@@ -43,7 +43,7 @@ class User extends MY_Controller{
 
 		$this->load->library('form_validation');
 
-		$this->form_validation->set_rules('query', 'Query', 'required');
+		$this->form_validation->set_rules('query', 'Search', 'required');
 
 		if ( !$this->form_validation->run() ) {
 
